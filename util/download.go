@@ -9,7 +9,7 @@ import (
     "os"
 )
 
-func check(err error, checking string) {
+func Check(err error, checking string) {
     if err != nil {
         fmt.Fprintf(os.Stderr, "%s: %v\n", checking, err)
         os.Exit(1)
@@ -18,7 +18,7 @@ func check(err error, checking string) {
 
 func GetProblem(rawUrl string) []string {
     pRequest, err := http.NewRequest("GET", rawUrl, nil)
-    check(err, "NewRequest")
+    Check(err, "NewRequest")
     cookie := http.Cookie{
         Name:"session",
         Value: os.Getenv("ADVENT_OF_CODE_2021"),
@@ -26,7 +26,7 @@ func GetProblem(rawUrl string) []string {
     pRequest.AddCookie(&cookie)
     client := http.Client{}
     pResp, err := client.Do(pRequest)
-    check(err, "fetch")
+    Check(err, "fetch")
 
     defer pResp.Body.Close()
     return getLines(pResp.Body)
@@ -39,7 +39,7 @@ func getLines(r io.Reader) []string {
         lines = append(lines, pScanner.Text())
     }
     err := pScanner.Err()
-    check(err, "Scan problem lines")
+    Check(err, "Scan problem lines")
 
     return lines
 }
