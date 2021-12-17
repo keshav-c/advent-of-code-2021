@@ -39,15 +39,9 @@ func main() {
     url := "https://adventofcode.com/2021/day/2/input"
     problemLines := util.GetProblem(url)
     input := transform(problemLines)
-    for i, data := range input {
-        fmt.Printf("%#v\n", data)
-        if i == 3 {
-            break
-        }
-    }
 
-    resultA := calcA()
-    fmt.Fprintf(os.Stdout, "Numbers increased: %d\n", resultA)
+    resultA := calcA(input)
+    fmt.Fprintf(os.Stdout, "Final horizontal x depth: %d\n", resultA)
 
     resultB := calcB()
     fmt.Fprintf(os.Stdout, "Windows increased: %d\n", resultB)
