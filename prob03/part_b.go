@@ -40,24 +40,24 @@ func (d data) filterData(position int, filter int, rows []int) []int {
 }
 
 func (d data) getRating(criteria string) bits {
+    numBits := len(d[0])
     rows := make([]int, len(d))
     for i, _ := range d {
         rows[i] = i
     }
     var position, filter int
-    for i:=0; i<100;i++ {
+    for {
         filter = d.getFilteringBit(position, rows, criteria)
         rows = d.filterData(position, filter, rows)
-        fmt.Printf("pos %d filter %d\n", position, filter)
-        fmt.Printf("len %d rows %v\n", len(rows), rows)
+        // fmt.Printf("pos %d filter %d len %d rows %v\n", position, filter, l, rows)
         if len(rows) == 1 {
-            fmt.Printf("Returning...\n")
-            return d[rows[0]]
+            fmt.Printf("breaking...\n")
+            break
         } else {
-            position = (position+1)%len(d[0])
+            position = (position+1) % numBits
         }
     }
-    fmt.Printf("how did i reach here?\n")
+    fmt.Printf("returning...\n")
     return d[rows[0]]
 }
 
