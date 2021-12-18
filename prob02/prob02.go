@@ -14,6 +14,6 @@ func main() {
     fmt.Fprintf(os.Stdout, "Final horizontal x depth: %d\n", resultA)
 
     resultB := calcB(problemLines)
-    fmt.Fprintf(os.Stdout, "Windows increased: %d\n", resultB)
+    fmt.Fprintf(os.Stdout, "True horizontal x depth: %d\n", resultB)
 }
 
